@@ -68,7 +68,7 @@ const authorization = async function (req, res, next) {
         const findBook = await BookModel.findById(bookId)
        if (!findBook) { return res.status(404).send({status : false,msg:'book does not exist'}) }
 
-        if (findBook.userId != decodedToken.userId) { return res.status(401).send({status :false,msg:'user is not allowed to make changes'}) }
+        if (findBook.userId != decodedToken.userId) { return res.status(403).send({status :false,msg:'user is not allowed to make changes'}) }
         next()
     }
     catch (err) {
